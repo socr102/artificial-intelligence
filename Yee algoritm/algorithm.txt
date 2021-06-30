@@ -1,0 +1,74 @@
+for (n = 0; n < maximumIteration; n++) 
+   { // iteration loop 
+        for (i = 0; i < xSize; i++) 
+            { // evaluate ex 
+                for (j = 1; j < ySize; j++) 
+                    { 
+                        ex[i][j] = caex[i][j] * ex[i][j] + cbex[i][j] * ( hz[i][j] - hz[i][j-1] ); 
+                    }
+            }           
+        for (i = 1; i < xSize; i++) 
+            { // evaluate ey 
+                for (j = 0; j < ySize; j++) 
+                    { 
+                        ey[i][j] = caey[i][j] * ey[i][j] + cbey[i][j] * ( hz[i-1][j] - hz[i][j] );
+        for (i = 0; i < xSize; i++) 
+            { // evaluate hx 
+                for (j = 0; j < ySize; j++) 
+                    { 
+                        hz[i][j] = dahz[i][j] * hz[i][j] + dbhz[i][j] * ( ex[i][j+1] - ex[i][j] + ey[i][j] - ey[i+1][j] );
+                    }
+            }            
+        hz[xSource][ySource] = sourceValue[n]; 
+        Where (in vacuum), 
+            ca = da = 1.0 
+            cb = dTime / (electricalPermittivity0 * dx); 
+            db = dTime / (magneticPermeability0 * dx); 
+    }  
+      
+    h5. 3-D data index mapping [gallery ids="58218"] If you imagine 3D array as cube, 
+    you first move horizontally by xPos, then you move yPos down in strides of xSize - the width of the cube - 
+    then you move "up” the cube, the Z-axis, in strides of xSize*ySize - the X-Y cross-sectional area of the cube. 
+    [gallery ids="63338"] 
+    h5. Kernel code 
+    
+    * static __global__ void naive_3D( doublereal *dst, doublereal *src, * unsigned int n1, unsigned int n2, unsigned int n3, * double one_over_n2, double one_over_n3, unsigned int sizeOfData ) } 
+    * double tmp1 ; 
+    * unsigned int t1, xIndex, yIndex, zIndex, index_in, index_out, gridIndex ; 
+    * // step 1: compute gridIndex in 1-D and 1-D data index "index_in"
+    * gridIndex = blockIdx.y * gridDim.x + blockIdx.x ; 
+    * index_in = ( gridIndex * BLOCK_DIM_Y + threadIdx.y )*BLOCK_DIM_X + threadIdx.x ; 
+    * // step 2: extract 3-D data index via 
+    index_in = row-map(i,j,k) = (i-1)*n2*n3 + (j-1)*n3 + (k-1)
+     * // where xIndex = i-1, yIndex = j-1, zIndex = k-1 
+     * if ( index_in < sizeOfData )
+       { 
+           * tmp1 = __uint2double_rn( index_in ) ;
+           * tmp1 = tmp1 * one_over_n3 ;
+           * t1 = __double2uint_rz( tmp1 ) ;
+           * zIndex = index_in - n3*t1 ;
+           * tmp1 = __uint2double_rn( t1 ) ;
+           * tmp1 = tmp1 * one_over_n2 ; 
+           * xIndex = __double2uint_rz( tmp1 ) ; 
+           * yIndex = t1 - n2 * xIndex ; 
+           * ... your code * }
+           // for each valid address h5. Function to call kernel 
+           * #define BLOCK_DIM_X 16
+           * #define BLOCK_DIM_Y 16
+           * void naive_3D_device( doublereal *Y, doublereal *X, * unsigned int n1, unsigned int n2, unsigned int n3 ) } 
+           * unsigned int k1, k2 ; * 
+           // step 1: compute # of threads per block 
+           * unsigned int nthreads = BLOCK_DIM_X * BLOCK_DIM_Y ; 
+           * // step 2: compute # of blocks needed 
+           * unsigned int nblocks = ( n1*n2*n3 + nthreads -1 )/nthreads ; 
+           * // step 3: find grid's configuration 
+           * double db_nblocks = (double)nblocks ; 
+           * k1 = (unsigned int) floor( sqrt(db_nblocks) ) ; 
+           * k2 = (unsigned int) ceil( db_nblocks/((double)k1)) ; 
+           * * dim3 threads(BLOCK_DIM_X, BLOCK_DIM_Y, 1); 
+           * dim3 grid( k2, k1, 1 ); 
+           * double eps = 1.E-12 ; 
+           * double one_over_n2 = (1.0 + eps)/((double)n2) ; 
+           * double one_over_n3 = (1.0 + eps)/((double)n3) ; 
+           * unsigned int sizeOfData = n1*n2*n3 ; 
+           * naive_3D<<< grid, threads >>>( Y, X, n1, n2, n3, one_over_n2, one_over_n3, sizeOfData ) ;

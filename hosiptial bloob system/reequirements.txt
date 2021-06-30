@@ -1,0 +1,32 @@
+lifeserve blood institue are happy with your peformance in the privious project. They have decided to engage you for developing a more featureful software that will help LBI staff carry out their day to day jobs. The proposed system will provide several features such as managing inventory records, storing donor details and attending to blood demand. In addition, the system will enforce the following medical rules:
+
+once a blood bag is collected, it must be used within 30 days. After that period , the bag is discarded.
+for every donor, there must be a minimum gap of 120 days between donations.
+During the gap period, a donor is labelled ad ineligible.
+
+create a converse function save_db that takes the data currently in memory and dumps it into two files in the exact same format as described above save_db function would be called multiple times during the program execution whenever donor or inventroy informations is modified.
+please keep the original files(from zip archieve) intact - store the modified database files with new names bags-new.txt and donors-new.txt.
+
+as your program starts, you should prompt the user for two database file name,load their data into memory(via load_db),initialize the blood compatibility dictionary and then present the user with a main menu containing five options.
+
+1)check inventory:with this option, the program will search for any bags older than 30 days, and if found, display their ID numbers so that staff can dispose them of.
+the database should be updated right away.
+2)attend to blood demand:when the local hospital needs a supply of blood, they contact LBI to arrange it. With this option, your program shsould check what type of blod is currently needed at the hospital. the zip file provided to you contains a module hospital.py containing a single function check_demand(). Call this function to find out the blood type required by hospital. Let us pretend this modul is communicating with hospital web servers.
+the function returns a single string value containing the blood type.
+Is some cases, the function may return an x value to indicate server communication errors.Your program will then check the inventory to see if a bag with matching or compatoble blood type exists in the stock.
+otherwise, the next task is to check the database of donors and find a list of eliglble donors with a compatile blood type(eligibility criteria as defined earlier). 
+3) Record new donation
+It will first ask for a valid donor ID and check their eligibility to donate.
+if eligible, a new bag will ne added with current data(today, the time of  execution) and a new auto generated ID number (increment the ID of the last bag). The respective donor's last donation date will also be updated. Database files should saved once addition is confirmed.
+4)stock visual report:
+Allow the user to see the distribution of in-stock blood bags in the form of a pie chart.label the pies with blood types and the current nuber of bags in stock. Do not show the blood types with zero stock
+
+
+handling invalid inputs:
+your program is supposed to handle , at a minimum ,the following invalid inputs or exceptional situations.
+some of these(but not all) are demonstrated in the sample runs.
+
+
+incorrect database file names
+file reading/writing errors
+invalid options for main menu

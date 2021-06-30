@@ -1,0 +1,197 @@
+Sample Run 1
+
+<<< LifeServe Blood Institute >>>
+
+Loading database...
+Enter the database file names without .txt extension
+or just press Enter to accept defaults
+Donors database (donors): [Enter]
+Stock inventory database (bags): oldbags
+Database loaded successfully
+
+------------
+Main Menu
+------------
+(1) Check inventory
+(2) Attend to blood demand
+(3) Record new donation
+(4) Stock visual report
+(5) Exit
+Enter your choice: 1
+
+Following bags are out of their use-by date
+3574
+3575
+3576
+3590
+Please dispose them of. Press any key when done...
+Updated database files saved to disk.
+
+------------
+Main Menu
+------------
+(1) Check inventory
+(2) Attend to blood demand
+(3) Record new donation
+(4) Stock visual report
+(5) Exit
+Enter your choice: 5
+
+Have a good day.
+
+Sample Run 2
+
+<<< LifeServe Blood Institute >>>
+
+Loading database...
+Enter the database file names without .txt extension,
+or just press Enter to accept defaults.
+Donors database (donors): [Enter]
+Stock inventory database (bags): [Enter]
+Database loaded successfully.
+
+------------
+Main Menu
+------------
+(1) Check inventory
+(2) Attend to blood demand
+(3) Record new donation
+(4) Stock visual report
+(5) Exit
+Enter your choice: 2
+
+Currently B+ blood is required.
+Checking the stock inventory...
+
+Following bag should be supplied
+ID: 3590 (B-)
+Press any key once it is packed for dispatch...
+Inventory records updated.
+Updated database files saved to disk.
+
+------------
+Main Menu
+------------
+(1) Check inventory
+(2) Attend to blood demand
+(3) Record new donation
+(4) Stock visual report
+(5) Exit
+Enter your choice: 2
+
+Could not connect to hospital web server.
+Please try again after some time.
+
+------------
+Main Menu
+------------
+(1) Check inventory
+(2) Attend to blood demand
+(3) Record new donation
+(4) Stock visual report
+(5) Exit
+Enter your choice: 2
+
+Currently B- blood is required.
+Checking the stock inventory...
+
+We can not meet the requirement. Checking the donor database...
+
+Following donors match the requirements. Please contact them for new donation.
+
+• Jorgen Krysia, 0462 316 524, jkrysia@defence.gov.au
+• Gafar Farrukh, 0431 252 844, gfarrukh@csu.edu.au
+• Trygve Imke, 0443 023 775, trygve1995@gmail.com
+
+------------
+Main Menu
+------------
+(1) Check inventory
+(2) Attend to blood demand
+(3) Record new donation
+(4) Stock visual report
+(5) Exit
+Enter your choice: 3
+
+Enter the donor's unique ID: 5200
+That ID does not exist in the database.
+To register a new donor, please contact the system administrator.
+
+------------
+Main Menu
+------------
+(1) Check inventory
+(2) Attend to blood demand
+(3) Record new donation
+(4) Stock visual report
+(5) Exit
+Enter your choice: 3
+
+Enter the donor's unique ID: 1251
+Sorry, this donor is not eligible for donation.
+
+------------
+Main Menu
+------------
+(1) Check inventory
+(2) Attend to blood demand
+(3) Record new donation
+(4) Stock visual report
+(5) Exit
+Enter your choice: 3
+
+Enter the donor's unique ID: 1256
+Recording a new donation with following details:
+From: Akanksha Adelardo
+Group: A+
+Date: 2021-02-03 (today)
+Bag ID: 3590
+Please confirm (y/n): n
+Cancelled.
+
+------------
+Main Menu
+------------
+(1) Check inventory
+(2) Attend to blood demand
+(3) Record new donation
+(4) Stock visual report
+(5) Exit
+Enter your choice: 3
+
+Enter the donor's unique ID: 1252
+Recording a new donation with following details:
+From: Jorgen Krysia
+Group: B-
+Date: 2021-02-03 (today)
+Bag ID: 3590
+Please confirm (y/n): y
+Done. Donor's last donation date also updated to 2021-02-03
+Updated database files saved to disk.
+
+------------
+Main Menu
+------------
+(1) Check inventory
+(2) Attend to blood demand
+(3) Record new donation
+(4) Stock visual report
+(5) Exit
+Enter your choice: 4
+
+Pie chart opens in a new window...
+Close the chart window to continue
+
+Pie Chart
+
+------------
+Main Menu
+------------
+(1) Check inventory
+(2) Attend to blood demand
+(3) Record new donation
+(4) Stock visual report
+(5) Exit
+Enter your choice: 5
+
+Have a good day.	
